@@ -27,15 +27,21 @@ npm install
 
 **Note:** I used `pnpm` as the package manager.
 
-## ⚙️ 3. Configure API URL
+## ⚙️ 3. Configure Environment Variables
 
-If you need to change the backend API URL, open:
+Create a `.env` file in the root directory of the project:
 
+```bash
+touch .env
 ```
-vite.config.ts
+
+Add the following environment variable with your backend API URL:
+
+```env
+VITE_API_URL = http://127.0.0.1:8000
 ```
 
-Update the API URL according to your backend setup.
+**Important:** Replace `http://127.0.0.1:8000` with your actual backend API URL.
 
 ## ▶️ 4. Run the Development Server
 
@@ -59,4 +65,5 @@ You can now access the frontend in your browser at the URL shown in the terminal
 
 - Make sure the backend API is running before starting the frontend.
 - `pnpm` is recommended, but `npm` works as well.
-- Any API URL changes must match the backend server URL.
+- The `VITE_API_URL` environment variable must match your backend server URL.
+- Do not commit the `.env` file to version control. Add it to `.gitignore` if not already included.

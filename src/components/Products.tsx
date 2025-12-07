@@ -1,7 +1,13 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react"
 import ProductCard from "./ProductCard"
+import type Product from "../types/product"
 
-const Products = ({ setCartCount, searchQuery }) => {
+interface props {
+  setCartCount: Dispatch<SetStateAction<number>>
+  searchQuery: string
+}
+
+const Products = ({ setCartCount, searchQuery }: props) => {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -20,7 +26,7 @@ const Products = ({ setCartCount, searchQuery }) => {
       const data = await res.json()
       setProducts(data)
       setError(null)
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error fetching products: ", error)
       setError(error.message)
     } finally {
@@ -28,7 +34,7 @@ const Products = ({ setCartCount, searchQuery }) => {
     }
   }
 
-  const filteredProducts = products.filter(product =>
+  const filteredProducts = products.filter((product: Product) =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
@@ -57,7 +63,7 @@ const Products = ({ setCartCount, searchQuery }) => {
         </div>
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredProducts.map(product => (
+        {filteredProducts.map((product: Product) => (
           <ProductCard
             key={product.id}
             product={product}

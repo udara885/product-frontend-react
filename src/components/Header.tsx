@@ -1,7 +1,13 @@
 import { Menu, Search, ShoppingCart, X } from "lucide-react"
-import { useState } from "react"
+import { useState, type Dispatch, type SetStateAction } from "react"
 
-const Header = ({ cartCount, searchQuery, setSearchQuery }) => {
+interface props {
+  cartCount: number
+  searchQuery: string
+  setSearchQuery: Dispatch<SetStateAction<string>>
+}
+
+const Header = ({ cartCount, searchQuery, setSearchQuery }: props) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (

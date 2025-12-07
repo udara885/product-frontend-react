@@ -1,4 +1,12 @@
-const ProductCard = ({ product, setCartCount }) => {
+import type { Dispatch, SetStateAction } from "react"
+import type Product from "../types/product"
+
+interface props {
+  product: Product
+  setCartCount: Dispatch<SetStateAction<number>>
+}
+
+const ProductCard = ({ product, setCartCount }: props) => {
   const handleAddToCart = () => {
     setCartCount(prev => prev + 1)
   }
